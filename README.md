@@ -1,4 +1,9 @@
-# [BEH] Basic Error Handler (SA)
+# [BEH] Basic Error Handler (SA) for PHP
+
+[![GitHub license](https://img.shields.io/github/license/arcanisgk/BEH-Basic-Error-Handler)](https://github.com/arcanisgk/BEH-Basic-Error-Handler/blob/main/LICENSE)
+[![State](https://img.shields.io/static/v1?label=release&message=1.0.0&color=blue 'Latest known version')](https://github.com/arcanisgk/Last-Hammer/tree/v0.1.3-alpha) <!-- __SEMANTIC_VERSION_LINE__ -->
+[![GitHub issues](https://img.shields.io/github/issues/arcanisgk/BEH-Basic-Error-Handler)](https://github.com/arcanisgk/BEH-Basic-Error-Handler/issues)
+[![Minimum PHP version](https://img.shields.io/static/v1?label=PHP&message=7.4.0+or+higher&color=blue "Minimum PHP version")](https://www.php.net/releases/7_4_0.php)
 
 Acronym: [BEH].
 
@@ -47,10 +52,7 @@ note: `.user.ini` files not use `php_value` statement.
 ErrorDocument 400 /error/error_server.php
 ```
 
-- error_conf.php:
-
-skin must be: basic, bs4, custom.
-
+- error_conf.php: skin must be: basic, bs4, custom.
 - custom skin: you must implement two files skin like.
     - sk_custom_server_error.php
     - sk_custom_handler_error.php
