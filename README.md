@@ -58,3 +58,6 @@ ErrorDocument 400 /error/error_server.php
     - sk_custom_handler_error.php
 - content of skin you must add the same variable print like basic skin, but you can use your own html design.
 
+
+### Contributors
+- (c) 2020 Walter Francisco Núñez Cruz icarosnet@gmail.com [![Donate](https://img.shields.io/static/v1?label=Donate&message=PayPal.me/wnunez86&color=brightgreen)](https://www.paypal.me/wnunez86/4.99USD)
