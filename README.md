@@ -34,6 +34,12 @@ This method of handling errors has proven to be extremely effective. Similar
 strategies are used in major PHP frameworks such as [Laravel]. *[BEH]* is a
 standalone implementation that can be used for any project, and not required third party library or software.
 
+## Help to improve *[BEH]*?
+
+if you want to collaborate with the development of the library; You can express your ideas or report any situation related to this in:
+https://github.com/arcanisgk/BEH-Basic-Error-Handler/issues
+
+
 ## *[BEH]* Configuration:
 - .htaccess: for Apache Version > 2.4.
 - .user.ini: for CGI/FPM/FastCGI.
