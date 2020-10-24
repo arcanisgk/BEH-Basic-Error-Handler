@@ -1,0 +1,7 @@
+.error-php{
+	padding: 5px;
+	text-align: left;
+	border: solid 2px #808080;
+	background-color: #FFD2D2;
+	word-wrap: break-word;
+}
