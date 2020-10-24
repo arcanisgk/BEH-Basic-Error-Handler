@@ -42,7 +42,7 @@
                     <strong class="fo-copy">
                         <i class="fas fa-registered"></i>
                         Developed by:
-                        <a href="http://www.icaros.live/" class="text-decoration-none">Icaros Net S.A </a>
+                        <a href="https://www.linkedin.com/in/walter-francisco-n%C3%BA%C3%B1ez-cruz/" class="text-decoration-none">Walter Nuñez </a>
                         and Powered by:
                         <a href="https://github.com/arcanisgk/Last-Hammer" class="text-decoration-none">Last Hammer </a>
                         <i class="fas fa-copyright"></i>
