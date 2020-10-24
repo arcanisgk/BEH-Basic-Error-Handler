@@ -92,5 +92,23 @@ you must implement two files skin like.
 ### Content of skin for *[BEH]* 
 you must add the same variable print like basic skin, but you can use your own html design.
 
+### Example of *[BEH]* Runing:
+
+- Error throw:
+
+![Image of Error throw](https://i.imgur.com/CYTAGU2.png)
+
+- Exception Error:
+
+![Image of Exception Error throw](https://i.imgur.com/ujl5pgI.png)
+
+- Fatal Error:
+
+![Image of Fatal Error throw](https://i.imgur.com/9XipIAb.png)
+
+- Access Error:
+
+![Image of Access Error Control](https://i.imgur.com/F5OI1f4.png)
+
 ### Contributors
 - (c) 2020 Walter Francisco Núñez Cruz icarosnet@gmail.com [![Donate](https://img.shields.io/static/v1?label=Donate&message=PayPal.me/wnunez86&color=brightgreen)](https://www.paypal.me/wnunez86/4.99USD)
