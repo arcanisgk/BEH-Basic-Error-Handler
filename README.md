@@ -39,9 +39,9 @@ Note: because of dependencies you must set the configuration inside `<IfModule m
 - .user.ini
 
 ```ini
-# auto_prepend_file "/var/www/html/error/init_error.php"
-# auto_prepend_file "/var/www/virtual-host/git-hub-project-name/error/init_error.php"
-auto_prepend_file "C:/xampp/htdocs/error/error_init.php"
+# auto_prepend_file = "/var/www/html/error/init_error.php"
+# auto_prepend_file = "/var/www/virtual-host/git-hub-project-name/error/init_error.php"
+auto_prepend_file = "C:/xampp/htdocs/error/error_init.php"
 ```
 
 note: `.user.ini` files not use `php_value` statement.
