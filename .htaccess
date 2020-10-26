@@ -10,7 +10,7 @@
 </Files>
 <IfModule mod_php7.c>
     #php_value auto_prepend_file "/var/www/html/test1/error/init_error.php"
-    php_value auto_prepend_file "C:/xampp/htdocs/dev/t1/error/init_error.php"
+    php_value auto_prepend_file "C:/xampp/htdocs/dev/t2/BEH-Basic-Error-Handler/error/init_error.php"
 </IfModule>
 ErrorDocument 400 /error/server_error.php
 ErrorDocument 401 /error/server_error.php
