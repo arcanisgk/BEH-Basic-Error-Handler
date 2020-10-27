@@ -1,13 +1,13 @@
 <?php
 
-class test
+class Test
 {
     /** @noinspection PhpUnhandledExceptionInspection */
     public function testMethod()
     {
 
         # TODO Test 1: Uncomment to get an Error Output
-        #echo $foo;
+        echo $foo;
 
         # TODO Test 2: Uncomment to get an throw exception Output
         #throw new Exception('This is an Example of throw Exception');

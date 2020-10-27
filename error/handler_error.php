@@ -1,41 +1,21 @@
 <?php
 declare(strict_types=1);
 
-try {
-    if (ini_set('session.gc_maxlifetime', '0') === false) {
-        throw new Exception('Unable to set session.gc_maxlifetime.');
-    }
-    if (ini_set('session.use_only_cookies', '1') === false) {
-        throw new Exception('Unable to set session.use_only_cookies.');
-    }
-    if (ini_set('session.cookie_httponly', '1') === false) {
-        throw new Exception('Unable to set session.cookie_httponly.');
-    }
-    if (ini_set('error_reporting', '1') === false) {
-        throw new Exception('Unable to set error_reporting.');
-    }
-    if (ini_set('display_errors', '0') === false) {
-        throw new Exception('Unable to set display_errors.');
-    }
-} catch (Exception $e) {
-    echo 'Exception catch: ', $e->getMessage(), "\n";
-}
+namespace IcarosNet\BEHBasicErrorHandler;
 
-error_reporting(E_ALL);
-
-class handler_error
+class HandlerError
 {
 
-    private static ?handler_error $instance = null;
+    private static ?HandlerError $instance = null;
 
     public function __construct()
     {
-        register_shutdown_function([$this, "ShutdownHandler"]);
-        set_exception_handler([$this, "ExceptionHandler"]);
-        set_error_handler([$this, "ErrorHandler"]);
+        register_shutdown_function([$this, "shutdownHandler"]);
+        set_exception_handler([$this, "exceptionHandler"]);
+        set_error_handler([$this, "errorHandler"]);
     }
 
-    public function ShutdownHandler()
+    public function shutdownHandler()
     {
         $error = error_get_last();
         if (null != $error) {
@@ -47,12 +27,12 @@ class handler_error
             $error_line  = $error['line'];
             $error_trace = array_reverse(debug_backtrace());
             array_pop($error_trace);
-            $error_trace_smg = $this->getBactrace($error_trace, $error_type);
+            $error_trace_smg = $this->getBacktrace($error_trace, $error_type);
             $this->output($error_type, $error_level, $error_desc, $error_file, $error_line, $error_trace_smg);
         }
     }
 
-    public function ExceptionHandler($e)
+    public function exceptionHandler($e)
     {
         $this->CleanOutput();
         $error_type      = 'ExceptionHandler';
@@ -61,21 +41,21 @@ class handler_error
         $error_file      = $e->getFile();
         $error_line      = $e->getLine();
         $error_trace     = $e->getTrace();
-        $error_trace_smg = $this->getBactrace($error_trace, $error_type);
+        $error_trace_smg = $this->getBacktrace($error_trace, $error_type);
         $this->output($error_type, $error_level, $error_desc, $error_file, $error_line, $error_trace_smg);
     }
 
-    public function ErrorHandler($error_level = null, $error_desc = null, $error_file = null, $error_line = null)
+    public function errorHandler($error_level = null, $error_desc = null, $error_file = null, $error_line = null)
     {
         $this->CleanOutput();
         $error_type  = 'ErrorHandler';
         $error_trace = array_reverse(debug_backtrace());
         array_pop($error_trace);
-        $error_trace_smg = $this->getBactrace($error_trace, $error_type);
+        $error_trace_smg = $this->getBacktrace($error_trace, $error_type);
         $this->output($error_type, $error_level, $error_desc, $error_file, $error_line, $error_trace_smg);
     }
 
-    private function getBactrace($error_trace, $error_type)
+    private function getBacktrace($error_trace, $error_type)
     {
         $error_trace_smg = '';
         if (!empty($error_trace)) {
@@ -100,7 +80,7 @@ class handler_error
     {
         $conf = [];
         require_once $_SERVER['DOCUMENT_ROOT'] . '/error/conf_error.php';
-        $out_type = $this->GetRQType($conf['error']);
+        $out_type = $this->getRQType($conf['error']);
         if ($out_type == 'plain') {
             /** @var array $conf */
             $error_skin = $_SERVER['DOCUMENT_ROOT'] . '/error/skin/sk_' . $conf['skin'] . '_handler_error.php';
@@ -124,30 +104,30 @@ class handler_error
                 ]
             );
         }
-        $this->ClearLastError();
+        $this->clearLastError();
     }
 
-    private function CleanOutput()
+    private function cleanOutput()
     {
         ob_end_clean();
         flush();
     }
 
-    private function ClearLastError()
+    private function clearLastError()
     {
         error_clear_last();
         exit();
     }
 
-    private function GetRQType($error)
+    private function getRQType($error)
     {
         /** @var string $error */
         if ($error == 'auto') {
             if (isset($_POST) && !empty($_POST)) {
-                return (count($_POST) > 1 ? 'plain' : ($this->is_json($_GET) ? 'json' : 'plain'));
+                return (count($_POST) > 1 ? 'plain' : ($this->isJson($_GET) ? 'json' : 'plain'));
             }
             if (isset($_GET) && !empty($_GET)) {
-                return (count($_GET) > 1 ? 'plain' : ($this->is_json($_GET) ? 'json' : 'plain'));
+                return (count($_GET) > 1 ? 'plain' : ($this->isJson($_GET) ? 'json' : 'plain'));
             }
             return 'plain';
         } else {
@@ -155,17 +135,17 @@ class handler_error
         }
     }
 
-    private function is_json($value)
+    private function isJson($value)
     {
         json_decode(current($value));
         return (json_last_error() == JSON_ERROR_NONE);
     }
 
-    public static function getInstance(): handler_error
+    public static function getInstance(): HandlerError
     {
         if (!self::$instance instanceof self) self::$instance = new self;
         return self::$instance;
     }
 }
 
-handler_error::getInstance();
+HandlerError::getInstance();
